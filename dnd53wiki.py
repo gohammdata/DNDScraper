@@ -3,7 +3,7 @@ from urllib.error import HTTPError
 from urllib.error import URLError
 from bs4 import BeautifulSoup
 
-def getTitle(url):
+def getClasses(url):
 
     try:
         html = urlopen(url)
@@ -13,12 +13,12 @@ def getTitle(url):
         print("The server could not be found!")
     try:
         bsObj = BeautifulSoup(html.read(), "html.parser")
-        title = bsObj.body.h1
+        classes = bsObj.findAll(class_= "col-sm-2")
     except AttributeError as e:
         return None
-    return title
-title = getTitle("http://dnd5e.wikidot.com/")
-if title == None:
-    print("Title could not be found")
+    return classes
+classes = getClasses("http://dnd5e.wikidot.com/")
+if all == None:
+    print("Classes could not be found")
 else:
-    print(title)
+    print(classes)
